@@ -18,10 +18,10 @@ K=7, neighbor[s]: 35 correct out of 75
 
 ![K=1](scatter_k1.PNG)
 
-## Scatterplot with K=2
-
-![K=2](scatter_k2.PNG)
-
 ## Scatterplot with K=3
 
-![K=3](scatter_k3.PNG)
+![K=2](scatter_k3.PNG)
+
+## Scatterplot with K=5
+
+![K=3](scatter_k5.PNG)
