@@ -35,16 +35,26 @@ def knn_classify(k, labeled_points, new_point):
 
 def predict_preferred_language_by_city(k_values, cities):
     """
-    TODO
     predicts a preferred programming language for each city using above knn_classify() and 
     counts if predicted language matches the actual language.
     Finally, print number of correct for each k value using this:
     print(k, "neighbor[s]:", num_correct, "correct out of", len(cities))
     """
-
+    
+    # City format is loc, lang so city[0] is location tuple, city[1] is language
+    for k in k_values:
+        num_correct = 0
+        for city in cities:
+            all_others = cities[:]
+            all_others.remove(city)
+            result = knn_classify(k,all_others,city[0])
+            if result == city[1]:
+                num_correct += 1
+        print('K={}, neighbor[s]: {} correct out of {}'.format(k, num_correct, len(cities)))
 
 if __name__ == "__main__":
     k_values = [1, 3, 5, 7]
-    # TODO
+    
     # Import cities from data.py and pass it into predict_preferred_language_by_city(x, y).
-    predict_preferred_language_by_city(k_values, [])
+    from data import cities
+    predict_preferred_language_by_city(k_values, cities)

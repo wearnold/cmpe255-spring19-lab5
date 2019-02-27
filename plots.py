@@ -3,6 +3,7 @@ from linear_algebra import distance
 from statistics import mean
 import math, random
 import matplotlib.pyplot as plt
+from knn import knn_classify
 
 def plot_state_borders(plt, color='0.8'):
     pass
@@ -35,27 +36,26 @@ def plot_cities(cities):
 
 def classify_and_plot_grid(cities, k=1):
     """
-    TODO
     Classify and plot for Python, Java, and R languages.
     """
-    plots = { "Java" : ([], []), "Python" : ([], []), "R" : ([], []) }
-    markers = { "Java" : "o", "Python" : "s", "R" : "^" }
-    colors  = { "Java" : "r", "Python" : "b", "R" : "g" }
-
     # Predict preferred language for each city using knn_classify() from knn.py.
     # longitude range (-130, -60)
     # latitude in range (20, 55)
     # Save the coordinate of prediction result in plots variable.
-    # TODO
+    scatter_data = []
+    for lon in range(-130,-60):
+        for lat in range(20, 55):
+            result = knn_classify(k, cities, (lon, lat))
+            scatter_data.append(([lon, lat], result))
 
     # create a scatter series for each language
     # See above plot_cities() to plot your prediction.
-    # TODO
-
+    plot_cities(scatter_data)
 
 if __name__ == "__main__":
-    # TODO import cities from data.py
-    cities = []
+    # Import cities from data.py
+    from data import cities
+
     plot_cities(cities)
     classify_and_plot_grid(cities)
     classify_and_plot_grid(cities, 3)
